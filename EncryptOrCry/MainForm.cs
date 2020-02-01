@@ -15,10 +15,11 @@ namespace EncryptOrCry
             InitializeComponent();
         }
 
+        public static int current_entry;
         public readonly string filepath = Properties.Settings.Default.filepath;
         static List<Entry> Entries = new List<Entry>();
         public static int mode;
-        public static int size=0;
+        public static int size = 0;
         FileReadWrite frw = new FileReadWrite();
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -26,6 +27,7 @@ namespace EncryptOrCry
             mode = 2;
             ModeHandler(mode); //set view mode.
             LoadEntries();
+            AddDataToItems(0); //fill browser
         }
 
         #region BrowseDB
@@ -35,22 +37,96 @@ namespace EncryptOrCry
         private static int page = 0;
 
 
-
-        private void AddDataToItems(int page_to_get)
+        //returns true if the page is full
+        //returns false if the page is not full
+        private bool AddDataToItems(int page_to_get)
         {
+            Console.WriteLine(page_to_get);
+            int page_magic = page_to_get * 4;
+            String[] content = new string[10];
+            int c_indx = 0;
+            int c_indxd = 1;
+            bool ret = false;
             //pages analoga me data length /5.
             TextBox[] items = { item_1_textbox1, item1_textbox2, item2_textbox1, item2_textbox2, item3_textbox1, item3_textbox2, item4_textbox1, item4_textbox2, item5_textbox1, item5_textbox2 };
+            for (int i = 0; i < 5; i++)
+            {
+                if ((i + page_magic) >= Entries.Count)
+                {
+                    ret = false;
+                    break;
+                }
+                else
+                {
+                    content[c_indx] = Entries[i + page_magic].Email;
+                    c_indx = c_indx + 2;
+                    content[c_indxd] = Entries[i + page_magic].Password;
+                    c_indxd = c_indxd + 2;
+                    ret = true;
+                }
+            }
+            //Clear textboxes.
+            foreach(TextBox tb in items)
+            {
+                tb.Clear();
+            }
+            //Fill textboxes.
+            for(int j=0;j<=c_indxd-2;j++)
+            {
+                items[j].Text = content[j];
+            }
+
+            return ret;
 
         }
         #endregion
 
-        #region Loader
+        #region Loader-Entry managment
+
+        //Saves the file.
+        private void Save()
+        {
+            frw.WriteFile(filepath, MakeJson());
+            ClearTextBoxes();
+        }
+        private void Add(Entry e)
+        {
+            Entries.Add(e);
+            //Refresh();
+            size++;
+            Save();
+        }
+        //Used by edit mode, removes entry at specific index and adds a new one.
+        private void Replace(int index, Entry e)
+        {
+            Entries[index] = e;
+            Save();
+        }
+
+        //Delete entry at specific index , move all entries one index back.
+        private void Delete(int index)
+        {
+            size = -1;
+            List<Entry> temp = new List<Entry>();
+            int i = 0;
+            Entries.RemoveAt(index);
+            foreach (Entry e in Entries)
+            {
+                size++;
+                temp.Add(e);
+                e.index = i++;
+            }
+            Entries.Clear();
+            Entries = temp;
+            Save();
+        }
 
         //Takes CoreJson object and adds it to the Entries List.
         private void LoadEntries()
         {
             CoreJson cj = LoadJson();
-            foreach(Entry e in cj.Entries)
+            size = cj.Size;
+            foreach (Entry e in cj.Entries)
             {
                 Entries.Add(e);
             }
@@ -140,6 +216,33 @@ namespace EncryptOrCry
             }
             else { password_textbox.Text = GeneratePassword(16); }
 
+        }
+        private void Save_button_Click(object sender, EventArgs e)
+        {
+            String[] textboxes_values = new string[6];
+            textboxes_values = grabTextboxes();
+            Entry entry;
+            entry = new Entry
+            {
+                index = size,
+                Title = textboxes_values[0],
+                Email = textboxes_values[1],
+                UserName = textboxes_values[2],
+                Password = textboxes_values[3],
+                Comment = textboxes_values[4],
+                Date = textboxes_values[5]
+            };
+            if (mode == 2)
+            //add mode
+            {
+                Add(entry);
+            }
+            if (mode == 1)
+            //edit mode
+            {
+                entry.index = current_entry;
+                Replace(current_entry, entry);
+            }
         }
         #endregion
         #region TextBoxes
@@ -255,29 +358,6 @@ namespace EncryptOrCry
 
         #endregion
 
-        private void Save_button_Click(object sender, EventArgs e)
-        {
-            String[] textboxes_values = new string[6];
-            textboxes_values = grabTextboxes();
-            Entry entry;
-            if (mode == 2)
-            //add mode
-            {
-                entry = new Entry
-                {
-                    index = size,
-                    Title = textboxes_values[0] ,
-                    Email = textboxes_values[1] ,
-                    UserName = textboxes_values[2],
-                    Password = textboxes_values[3],
-                    Comment = textboxes_values[4],
-                    Date = textboxes_values[5]
-                };
-                Entries.Add(entry);
-                size++;
-                frw.WriteFile(@"", MakeJson());
-                LoadEntries();
-            }
-        }
+
     }
 }
