@@ -31,38 +31,38 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.nextpage_button = new System.Windows.Forms.Button();
+            this.prevpage_button = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.item5_textbox2 = new System.Windows.Forms.TextBox();
+            this.item5_textbox1 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.item4_textbox1 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.item4_textbox2 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.item3_textbox2 = new System.Windows.Forms.TextBox();
+            this.item3_textbox1 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.item2_textbox2 = new System.Windows.Forms.TextBox();
+            this.item2_textbox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.item1_textbox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.item_1_textbox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,14 +73,19 @@
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.note_textbox = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.Generate_password_button = new System.Windows.Forms.Button();
+            this.password_textbox = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.user_textbox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.email_textbox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.title_textbox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.insert_button = new System.Windows.Forms.Button();
@@ -88,11 +93,6 @@
             this.Edit_button = new System.Windows.Forms.Button();
             this.cancel_button = new System.Windows.Forms.Button();
             this.Save_button = new System.Windows.Forms.Button();
-            this.user_textbox = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.password_textbox = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -134,8 +134,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.nextpage_button);
+            this.groupBox2.Controls.Add(this.prevpage_button);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Location = new System.Drawing.Point(-4, 406);
             this.groupBox2.Name = "groupBox2";
@@ -143,27 +143,29 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
-            // button2
+            // nextpage_button
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Malgun Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(717, 29);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 76);
-            this.button2.TabIndex = 2;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
+            this.nextpage_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nextpage_button.Font = new System.Drawing.Font("Malgun Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextpage_button.Location = new System.Drawing.Point(717, 29);
+            this.nextpage_button.Name = "nextpage_button";
+            this.nextpage_button.Size = new System.Drawing.Size(65, 76);
+            this.nextpage_button.TabIndex = 2;
+            this.nextpage_button.Text = ">";
+            this.nextpage_button.UseVisualStyleBackColor = true;
+            this.nextpage_button.Click += new System.EventHandler(this.Nextpage_button_Click);
             // 
-            // button1
+            // prevpage_button
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 76);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
+            this.prevpage_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.prevpage_button.Font = new System.Drawing.Font("Malgun Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prevpage_button.Location = new System.Drawing.Point(0, 29);
+            this.prevpage_button.Name = "prevpage_button";
+            this.prevpage_button.Size = new System.Drawing.Size(75, 76);
+            this.prevpage_button.TabIndex = 1;
+            this.prevpage_button.Text = "<";
+            this.prevpage_button.UseVisualStyleBackColor = true;
+            this.prevpage_button.Click += new System.EventHandler(this.Prevpage_button_Click);
             // 
             // groupBox3
             // 
@@ -182,8 +184,8 @@
             // 
             this.groupBox8.Controls.Add(this.label15);
             this.groupBox8.Controls.Add(this.label16);
-            this.groupBox8.Controls.Add(this.textBox11);
-            this.groupBox8.Controls.Add(this.textBox10);
+            this.groupBox8.Controls.Add(this.item5_textbox2);
+            this.groupBox8.Controls.Add(this.item5_textbox1);
             this.groupBox8.Controls.Add(this.label17);
             this.groupBox8.Location = new System.Drawing.Point(500, 0);
             this.groupBox8.Name = "groupBox8";
@@ -212,19 +214,19 @@
             this.label16.TabIndex = 24;
             this.label16.Text = "title";
             // 
-            // textBox11
+            // item5_textbox2
             // 
-            this.textBox11.Location = new System.Drawing.Point(19, 92);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 20);
-            this.textBox11.TabIndex = 27;
+            this.item5_textbox2.Location = new System.Drawing.Point(19, 92);
+            this.item5_textbox2.Name = "item5_textbox2";
+            this.item5_textbox2.Size = new System.Drawing.Size(100, 20);
+            this.item5_textbox2.TabIndex = 27;
             // 
-            // textBox10
+            // item5_textbox1
             // 
-            this.textBox10.Location = new System.Drawing.Point(19, 49);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 20);
-            this.textBox10.TabIndex = 25;
+            this.item5_textbox1.Location = new System.Drawing.Point(19, 49);
+            this.item5_textbox1.Name = "item5_textbox1";
+            this.item5_textbox1.Size = new System.Drawing.Size(100, 20);
+            this.item5_textbox1.TabIndex = 25;
             // 
             // label17
             // 
@@ -240,9 +242,9 @@
             // 
             this.groupBox7.Controls.Add(this.label12);
             this.groupBox7.Controls.Add(this.label13);
-            this.groupBox7.Controls.Add(this.textBox9);
+            this.groupBox7.Controls.Add(this.item4_textbox1);
             this.groupBox7.Controls.Add(this.label14);
-            this.groupBox7.Controls.Add(this.textBox8);
+            this.groupBox7.Controls.Add(this.item4_textbox2);
             this.groupBox7.Location = new System.Drawing.Point(375, 0);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(125, 131);
@@ -270,12 +272,12 @@
             this.label13.TabIndex = 19;
             this.label13.Text = "title";
             // 
-            // textBox9
+            // item4_textbox1
             // 
-            this.textBox9.Location = new System.Drawing.Point(10, 49);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 20;
+            this.item4_textbox1.Location = new System.Drawing.Point(10, 49);
+            this.item4_textbox1.Name = "item4_textbox1";
+            this.item4_textbox1.Size = new System.Drawing.Size(100, 20);
+            this.item4_textbox1.TabIndex = 20;
             // 
             // label14
             // 
@@ -287,20 +289,20 @@
             this.label14.TabIndex = 21;
             this.label14.Text = "email";
             // 
-            // textBox8
+            // item4_textbox2
             // 
-            this.textBox8.Location = new System.Drawing.Point(10, 92);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 22;
+            this.item4_textbox2.Location = new System.Drawing.Point(10, 92);
+            this.item4_textbox2.Name = "item4_textbox2";
+            this.item4_textbox2.Size = new System.Drawing.Size(100, 20);
+            this.item4_textbox2.TabIndex = 22;
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.label10);
             this.groupBox6.Controls.Add(this.label11);
-            this.groupBox6.Controls.Add(this.textBox6);
-            this.groupBox6.Controls.Add(this.textBox7);
+            this.groupBox6.Controls.Add(this.item3_textbox2);
+            this.groupBox6.Controls.Add(this.item3_textbox1);
             this.groupBox6.Location = new System.Drawing.Point(250, 0);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(125, 131);
@@ -338,26 +340,26 @@
             this.label11.TabIndex = 16;
             this.label11.Text = "email";
             // 
-            // textBox6
+            // item3_textbox2
             // 
-            this.textBox6.Location = new System.Drawing.Point(10, 92);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 17;
+            this.item3_textbox2.Location = new System.Drawing.Point(10, 92);
+            this.item3_textbox2.Name = "item3_textbox2";
+            this.item3_textbox2.Size = new System.Drawing.Size(100, 20);
+            this.item3_textbox2.TabIndex = 17;
             // 
-            // textBox7
+            // item3_textbox1
             // 
-            this.textBox7.Location = new System.Drawing.Point(10, 49);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 15;
+            this.item3_textbox1.Location = new System.Drawing.Point(10, 49);
+            this.item3_textbox1.Name = "item3_textbox1";
+            this.item3_textbox1.Size = new System.Drawing.Size(100, 20);
+            this.item3_textbox1.TabIndex = 15;
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label6);
             this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.textBox4);
-            this.groupBox5.Controls.Add(this.textBox5);
+            this.groupBox5.Controls.Add(this.item2_textbox2);
+            this.groupBox5.Controls.Add(this.item2_textbox1);
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Location = new System.Drawing.Point(125, 0);
             this.groupBox5.Name = "groupBox5";
@@ -386,19 +388,19 @@
             this.label8.TabIndex = 9;
             this.label8.Text = "title";
             // 
-            // textBox4
+            // item2_textbox2
             // 
-            this.textBox4.Location = new System.Drawing.Point(10, 92);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 12;
+            this.item2_textbox2.Location = new System.Drawing.Point(10, 92);
+            this.item2_textbox2.Name = "item2_textbox2";
+            this.item2_textbox2.Size = new System.Drawing.Size(100, 20);
+            this.item2_textbox2.TabIndex = 12;
             // 
-            // textBox5
+            // item2_textbox1
             // 
-            this.textBox5.Location = new System.Drawing.Point(10, 49);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 10;
+            this.item2_textbox1.Location = new System.Drawing.Point(10, 49);
+            this.item2_textbox1.Name = "item2_textbox1";
+            this.item2_textbox1.Size = new System.Drawing.Size(100, 20);
+            this.item2_textbox1.TabIndex = 10;
             // 
             // label7
             // 
@@ -413,9 +415,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.item1_textbox2);
             this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.item_1_textbox1);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
@@ -433,12 +435,12 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "pswd";
             // 
-            // textBox3
+            // item1_textbox2
             // 
-            this.textBox3.Location = new System.Drawing.Point(10, 92);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
+            this.item1_textbox2.Location = new System.Drawing.Point(10, 92);
+            this.item1_textbox2.Name = "item1_textbox2";
+            this.item1_textbox2.Size = new System.Drawing.Size(100, 20);
+            this.item1_textbox2.TabIndex = 7;
             // 
             // label4
             // 
@@ -450,12 +452,12 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "email";
             // 
-            // textBox2
+            // item_1_textbox1
             // 
-            this.textBox2.Location = new System.Drawing.Point(10, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
+            this.item_1_textbox1.Location = new System.Drawing.Point(10, 49);
+            this.item_1_textbox1.Name = "item_1_textbox1";
+            this.item_1_textbox1.Size = new System.Drawing.Size(100, 20);
+            this.item_1_textbox1.TabIndex = 5;
             // 
             // label3
             // 
@@ -551,7 +553,7 @@
             // groupBox13
             // 
             this.groupBox13.Controls.Add(this.label21);
-            this.groupBox13.Controls.Add(this.textBox14);
+            this.groupBox13.Controls.Add(this.note_textbox);
             this.groupBox13.Location = new System.Drawing.Point(298, 45);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(296, 192);
@@ -569,20 +571,20 @@
             this.label21.Text = "Notes";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox14
+            // note_textbox
             // 
-            this.textBox14.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox14.Location = new System.Drawing.Point(3, 19);
-            this.textBox14.Multiline = true;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(264, 167);
-            this.textBox14.TabIndex = 14;
-            this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.note_textbox.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.note_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.note_textbox.Location = new System.Drawing.Point(3, 19);
+            this.note_textbox.Multiline = true;
+            this.note_textbox.Name = "note_textbox";
+            this.note_textbox.Size = new System.Drawing.Size(264, 167);
+            this.note_textbox.TabIndex = 14;
+            this.note_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox12
             // 
-            this.groupBox12.Controls.Add(this.button5);
+            this.groupBox12.Controls.Add(this.Generate_password_button);
             this.groupBox12.Controls.Add(this.password_textbox);
             this.groupBox12.Controls.Add(this.label23);
             this.groupBox12.Controls.Add(this.user_textbox);
@@ -595,6 +597,60 @@
             this.groupBox12.Size = new System.Drawing.Size(296, 192);
             this.groupBox12.TabIndex = 2;
             this.groupBox12.TabStop = false;
+            // 
+            // Generate_password_button
+            // 
+            this.Generate_password_button.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.Generate_password_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Generate_password_button.Font = new System.Drawing.Font("Poppins Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Generate_password_button.Location = new System.Drawing.Point(5, 156);
+            this.Generate_password_button.Name = "Generate_password_button";
+            this.Generate_password_button.Size = new System.Drawing.Size(275, 30);
+            this.Generate_password_button.TabIndex = 6;
+            this.Generate_password_button.Text = "Generate strong password";
+            this.Generate_password_button.UseVisualStyleBackColor = false;
+            this.Generate_password_button.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // password_textbox
+            // 
+            this.password_textbox.Location = new System.Drawing.Point(7, 127);
+            this.password_textbox.Name = "password_textbox";
+            this.password_textbox.Size = new System.Drawing.Size(274, 20);
+            this.password_textbox.TabIndex = 18;
+            this.password_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.password_textbox.UseSystemPasswordChar = true;
+            this.password_textbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Password_textbox_MouseClick);
+            this.password_textbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Password_textbox_MouseDoubleClick);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(242, 111);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(39, 13);
+            this.label23.TabIndex = 17;
+            this.label23.Text = "Pswd";
+            // 
+            // user_textbox
+            // 
+            this.user_textbox.Location = new System.Drawing.Point(7, 76);
+            this.user_textbox.Name = "user_textbox";
+            this.user_textbox.Size = new System.Drawing.Size(274, 20);
+            this.user_textbox.TabIndex = 16;
+            this.user_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.user_textbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.User_textbox_MouseClick);
+            this.user_textbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.User_textbox_MouseDoubleClick);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(242, 60);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 13);
+            this.label22.TabIndex = 15;
+            this.label22.Text = "User";
             // 
             // label19
             // 
@@ -614,6 +670,8 @@
             this.email_textbox.Size = new System.Drawing.Size(274, 20);
             this.email_textbox.TabIndex = 14;
             this.email_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.email_textbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Email_textbox_MouseClick);
+            this.email_textbox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Email_textbox_MouseDoubleClick);
             // 
             // label20
             // 
@@ -636,24 +694,24 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox12);
+            this.panel2.Controls.Add(this.title_textbox);
             this.panel2.Location = new System.Drawing.Point(89, 10);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(371, 32);
             this.panel2.TabIndex = 0;
             // 
-            // textBox12
+            // title_textbox
             // 
-            this.textBox12.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox12.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(5, 3);
-            this.textBox12.Multiline = true;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(365, 26);
-            this.textBox12.TabIndex = 9;
-            this.textBox12.Text = "abstract.gr";
-            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.title_textbox.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.title_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.title_textbox.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_textbox.Location = new System.Drawing.Point(5, 3);
+            this.title_textbox.Multiline = true;
+            this.title_textbox.Name = "title_textbox";
+            this.title_textbox.Size = new System.Drawing.Size(365, 26);
+            this.title_textbox.TabIndex = 9;
+            this.title_textbox.Text = "abstract.gr";
+            this.title_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel1
             // 
@@ -736,55 +794,7 @@
             this.Save_button.TabIndex = 0;
             this.Save_button.Text = "Save";
             this.Save_button.UseVisualStyleBackColor = false;
-            // 
-            // user_textbox
-            // 
-            this.user_textbox.Location = new System.Drawing.Point(7, 76);
-            this.user_textbox.Name = "user_textbox";
-            this.user_textbox.Size = new System.Drawing.Size(274, 20);
-            this.user_textbox.TabIndex = 16;
-            this.user_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(242, 60);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 13);
-            this.label22.TabIndex = 15;
-            this.label22.Text = "User";
-            // 
-            // password_textbox
-            // 
-            this.password_textbox.Location = new System.Drawing.Point(7, 127);
-            this.password_textbox.Name = "password_textbox";
-            this.password_textbox.PasswordChar = 'x';
-            this.password_textbox.Size = new System.Drawing.Size(274, 20);
-            this.password_textbox.TabIndex = 18;
-            this.password_textbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(242, 111);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(39, 13);
-            this.label23.TabIndex = 17;
-            this.label23.Text = "Pswd";
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Poppins Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(5, 156);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(275, 30);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Generate strong password";
-            this.button5.UseVisualStyleBackColor = false;
+            this.Save_button.Click += new System.EventHandler(this.Save_button_Click);
             // 
             // MainForm
             // 
@@ -803,6 +813,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
             this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -838,38 +849,38 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button nextpage_button;
+        private System.Windows.Forms.Button prevpage_button;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox item5_textbox2;
+        private System.Windows.Forms.TextBox item5_textbox1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox item4_textbox1;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox item4_textbox2;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox item3_textbox2;
+        private System.Windows.Forms.TextBox item3_textbox1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox item2_textbox2;
+        private System.Windows.Forms.TextBox item2_textbox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox item1_textbox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox item_1_textbox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -880,14 +891,14 @@
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox note_textbox;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox email_textbox;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox title_textbox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button insert_button;
@@ -899,6 +910,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox user_textbox;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button Generate_password_button;
     }
 }

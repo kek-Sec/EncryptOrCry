@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace EncryptOrCry
 {
-    public partial class Form1 : Form
+    public partial class Landing : Form
     {
-        public Form1()
+        public Landing()
         {
             InitializeComponent();
+        }
+
+        MainForm mf = new MainForm();
+
+        private void Landing_Load(object sender, EventArgs e)
+        {
+            mf.Show();
+            this.Hide();
         }
     }
 }
