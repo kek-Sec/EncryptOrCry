@@ -18,10 +18,12 @@ namespace EncryptOrCry
         }
 
         MainForm mf = new MainForm();
+        Login l = new Login();
+        FirstTimeSetup fts = new FirstTimeSetup();
 
         private void Landing_Load(object sender, EventArgs e)
         {
-            mf.Show();
+            fts.Show();
             this.Hide();
         }
     }

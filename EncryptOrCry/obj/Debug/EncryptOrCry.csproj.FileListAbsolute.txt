@@ -14,3 +14,9 @@ C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\obj\Debug\EncryptOrCry.pdb
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\Newtonsoft.Json.dll
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\Newtonsoft.Json.xml
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\obj\Debug\EncryptOrCry.csproj.CopyComplete
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\PgpCore.dll
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Reflection.TypeExtensions.dll
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\BouncyCastle.Crypto.xml
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Diagnostics.DiagnosticSource.xml

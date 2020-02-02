@@ -765,6 +765,7 @@
             this.Delete_button.TabIndex = 3;
             this.Delete_button.Text = "Delete";
             this.Delete_button.UseVisualStyleBackColor = false;
+            this.Delete_button.Click += new System.EventHandler(this.Delete_button_Click);
             // 
             // Edit_button
             // 

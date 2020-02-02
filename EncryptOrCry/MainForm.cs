@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Windows.Forms;
 
 namespace EncryptOrCry
@@ -28,7 +29,14 @@ namespace EncryptOrCry
             mode = 3;
             ModeHandler(mode); //set view mode.
             LoadEntries();
+            Refresh();
+
+        }
+
+        private void Refresh()
+        {
             AddDataToItems(0); //fill browser
+            FillListBox();
         }
 
         #region BrowseDB
@@ -49,8 +57,11 @@ namespace EncryptOrCry
             int c_ids = 0;
             int c_indx = 0;
             int c_indxd = 1;
+            String[] Titles = new string[5];
+            int t_indx = 0;
             bool ret = false;
             //pages analoga me data length /5.
+            Label[] titlez = { label3, label8, label10, label13, label16 };
             TextBox[] items = { item_1_textbox1, item1_textbox2, item2_textbox1, item2_textbox2, item3_textbox1, item3_textbox2, item4_textbox1, item4_textbox2, item5_textbox1, item5_textbox2 };
             for (int i = 0; i < 5; i++)
             {
@@ -67,6 +78,8 @@ namespace EncryptOrCry
                     c_indx = c_indx + 2;
                     content[c_indxd] = Entries[i + page_magic].Password;
                     c_indxd = c_indxd + 2;
+                    Titles[t_indx] = Entries[i + page_magic].Title;
+                    t_indx++;
                     ret = true;
                 }
                 //reset the rest ids.
@@ -85,6 +98,11 @@ namespace EncryptOrCry
             {
                 items[j].Text = content[j];
             }
+            int c = 0;
+            foreach(Label l in titlez)
+            {
+                l.Text = Titles[c++];
+            }
 
             return ret;
 
@@ -99,6 +117,10 @@ namespace EncryptOrCry
             frw.WriteFile(filepath, MakeJson());
             page = 0; AddDataToItems(page);
             ClearTextBoxes();
+            Refresh();
+            mode = 3;
+            ModeHandler(mode);
+            SystemSounds.Beep.Play();
         }
         private void Add(Entry e)
         {
@@ -116,7 +138,7 @@ namespace EncryptOrCry
         //Delete entry at specific index , move all entries one index back.
         private void Delete(int index)
         {
-            size = -1;
+            size = 0;
             List<Entry> temp = new List<Entry>();
             int i = 0;
             Entries.RemoveAt(index);
@@ -186,14 +208,15 @@ namespace EncryptOrCry
             Console.WriteLine(current_entry);
             if (!Selected) { }
             else
-            EnableButtons(mode);
+                EnableButtons(mode);
             HandleTextBoxes(mode);
 
-            if (mode == 2)
+            if (mode == 2 || mode == 3)
             {
                 EnableButtons(mode);
                 HandleTextBoxes(mode);
             }
+
         }
         #endregion
         #region buttons
@@ -318,6 +341,10 @@ namespace EncryptOrCry
             mode = 2;
             ModeHandler(mode);
         }
+        private void Delete_button_Click(object sender, EventArgs e)
+        {
+            if (Selected) { Delete(current_entry); }
+        }
         #endregion
         #region TextBoxes
         //Edit , add ,Read
@@ -340,7 +367,7 @@ namespace EncryptOrCry
             }
             date_label.Text = "";
         }
-        //fills textboxes
+        //s textboxes
         private void FillTextboxes(Entry e)
         {
             TextBox[] mt = { title_textbox, email_textbox, user_textbox, password_textbox, note_textbox };
@@ -433,6 +460,24 @@ namespace EncryptOrCry
         #endregion
         #region utils
 
+        private void FillListBox()
+        {
+            listBox1.Items.Clear();
+            foreach(Entry e in Entries)
+            {
+                listBox1.Items.Add(e.Title);
+            }
+        }
+
+        private void FillListBox(int[] queue)
+        {
+            listBox1.Items.Clear();
+            for (int i=0;i<queue.Length;i++)
+            {
+                listBox1.Items.Add(Entries[queue[i]]);
+            }
+        }
+
         private static Random random = new Random();
         public static string GeneratePassword(int length)
         {
@@ -444,8 +489,7 @@ namespace EncryptOrCry
 
 
 
+
         #endregion
-
-
     }
 }
