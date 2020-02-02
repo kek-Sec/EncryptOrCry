@@ -87,7 +87,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.title_textbox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
+            this.date_label = new System.Windows.Forms.Label();
             this.insert_button = new System.Windows.Forms.Button();
             this.Delete_button = new System.Windows.Forms.Button();
             this.Edit_button = new System.Windows.Forms.Button();
@@ -213,6 +213,7 @@
             this.label16.Size = new System.Drawing.Size(38, 20);
             this.label16.TabIndex = 24;
             this.label16.Text = "title";
+            this.label16.Click += new System.EventHandler(this.Label16_Click);
             // 
             // item5_textbox2
             // 
@@ -271,6 +272,7 @@
             this.label13.Size = new System.Drawing.Size(38, 20);
             this.label13.TabIndex = 19;
             this.label13.Text = "title";
+            this.label13.Click += new System.EventHandler(this.Label13_Click);
             // 
             // item4_textbox1
             // 
@@ -329,6 +331,7 @@
             this.label10.Size = new System.Drawing.Size(38, 20);
             this.label10.TabIndex = 14;
             this.label10.Text = "title";
+            this.label10.Click += new System.EventHandler(this.Label10_Click);
             // 
             // label11
             // 
@@ -387,6 +390,7 @@
             this.label8.Size = new System.Drawing.Size(38, 20);
             this.label8.TabIndex = 9;
             this.label8.Text = "title";
+            this.label8.Click += new System.EventHandler(this.Label8_Click);
             // 
             // item2_textbox2
             // 
@@ -469,6 +473,7 @@
             this.label3.Size = new System.Drawing.Size(38, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "title";
+            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // label1
             // 
@@ -526,6 +531,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "+";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // listBox1
             // 
@@ -715,7 +721,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.date_label);
             this.panel1.Controls.Add(this.insert_button);
             this.panel1.Controls.Add(this.Delete_button);
             this.panel1.Controls.Add(this.Edit_button);
@@ -726,14 +732,14 @@
             this.panel1.Size = new System.Drawing.Size(553, 61);
             this.panel1.TabIndex = 0;
             // 
-            // label18
+            // date_label
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(497, 45);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(53, 13);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "25/12/19";
+            this.date_label.AutoSize = true;
+            this.date_label.Location = new System.Drawing.Point(497, 45);
+            this.date_label.Name = "date_label";
+            this.date_label.Size = new System.Drawing.Size(53, 13);
+            this.date_label.TabIndex = 5;
+            this.date_label.Text = "25/12/19";
             // 
             // insert_button
             // 
@@ -746,6 +752,7 @@
             this.insert_button.TabIndex = 4;
             this.insert_button.Text = "INSERT";
             this.insert_button.UseVisualStyleBackColor = false;
+            this.insert_button.Click += new System.EventHandler(this.Insert_button_Click);
             // 
             // Delete_button
             // 
@@ -770,6 +777,7 @@
             this.Edit_button.TabIndex = 2;
             this.Edit_button.Text = "Edit";
             this.Edit_button.UseVisualStyleBackColor = false;
+            this.Edit_button.Click += new System.EventHandler(this.Edit_button_Click);
             // 
             // cancel_button
             // 
@@ -900,7 +908,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox title_textbox;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label date_label;
         private System.Windows.Forms.Button insert_button;
         private System.Windows.Forms.Button Delete_button;
         private System.Windows.Forms.Button Edit_button;

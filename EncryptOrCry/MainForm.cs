@@ -15,6 +15,7 @@ namespace EncryptOrCry
             InitializeComponent();
         }
 
+        public static bool Selected = false;
         public static int current_entry;
         public readonly string filepath = Properties.Settings.Default.filepath;
         static List<Entry> Entries = new List<Entry>();
@@ -24,7 +25,7 @@ namespace EncryptOrCry
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            mode = 2;
+            mode = 3;
             ModeHandler(mode); //set view mode.
             LoadEntries();
             AddDataToItems(0); //fill browser
@@ -39,11 +40,13 @@ namespace EncryptOrCry
 
         //returns true if the page is full
         //returns false if the page is not full
+        private static int[] ids;
         private bool AddDataToItems(int page_to_get)
         {
-            Console.WriteLine(page_to_get);
             int page_magic = page_to_get * 4;
             String[] content = new string[10];
+            ids = new int[5];
+            int c_ids = 0;
             int c_indx = 0;
             int c_indxd = 1;
             bool ret = false;
@@ -58,20 +61,27 @@ namespace EncryptOrCry
                 }
                 else
                 {
+                    ids[c_ids] = Entries[i + page_magic].index;
+                    c_ids++;
                     content[c_indx] = Entries[i + page_magic].Email;
                     c_indx = c_indx + 2;
                     content[c_indxd] = Entries[i + page_magic].Password;
                     c_indxd = c_indxd + 2;
                     ret = true;
                 }
+                //reset the rest ids.
+                for (int x = c_ids; x < 5; x++)
+                {
+                    ids[c_ids] = -1;
+                }
             }
             //Clear textboxes.
-            foreach(TextBox tb in items)
+            foreach (TextBox tb in items)
             {
                 tb.Clear();
             }
             //Fill textboxes.
-            for(int j=0;j<=c_indxd-2;j++)
+            for (int j = 0; j <= c_indxd - 2; j++)
             {
                 items[j].Text = content[j];
             }
@@ -87,12 +97,12 @@ namespace EncryptOrCry
         private void Save()
         {
             frw.WriteFile(filepath, MakeJson());
+            page = 0; AddDataToItems(page);
             ClearTextBoxes();
         }
         private void Add(Entry e)
         {
             Entries.Add(e);
-            //Refresh();
             size++;
             Save();
         }
@@ -132,6 +142,19 @@ namespace EncryptOrCry
             }
         }
 
+        private void SelectEntry(int index)
+        {
+            if (index == -1) { }
+            else
+            {
+                Selected = true;
+                current_entry = index;
+                FillTextboxes(Entries[index]);
+                mode = 1;
+            }
+
+        }
+
         #endregion
 
 
@@ -160,8 +183,17 @@ namespace EncryptOrCry
         //Edit , Add , Read.
         private void ModeHandler(int mode)
         {
+            Console.WriteLine(current_entry);
+            if (!Selected) { }
+            else
             EnableButtons(mode);
             HandleTextBoxes(mode);
+
+            if (mode == 2)
+            {
+                EnableButtons(mode);
+                HandleTextBoxes(mode);
+            }
         }
         #endregion
         #region buttons
@@ -192,6 +224,7 @@ namespace EncryptOrCry
                 insert_button.Visible = true;
                 Delete_button.Visible = true;
             }
+            if (mode == 1) { Delete_button.Visible = true; }
         }
         private void Prevpage_button_Click(object sender, EventArgs e)
         {
@@ -243,6 +276,47 @@ namespace EncryptOrCry
                 entry.index = current_entry;
                 Replace(current_entry, entry);
             }
+            mode = 2;
+        }
+        private void Edit_button_Click(object sender, EventArgs e)
+        {
+            mode = 1;
+            ModeHandler(mode);
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            mode = 2;
+            ModeHandler(mode);
+        }
+        private void Label3_Click(object sender, EventArgs e)
+        {
+            SelectEntry(ids[0]);
+        }
+
+        private void Label8_Click(object sender, EventArgs e)
+        {
+            SelectEntry(ids[1]);
+        }
+
+        private void Label10_Click(object sender, EventArgs e)
+        {
+            SelectEntry(ids[2]);
+        }
+
+        private void Label13_Click(object sender, EventArgs e)
+        {
+            SelectEntry(ids[3]);
+        }
+
+        private void Label16_Click(object sender, EventArgs e)
+        {
+            SelectEntry(ids[4]);
+        }
+        private void Insert_button_Click(object sender, EventArgs e)
+        {
+            mode = 2;
+            ModeHandler(mode);
         }
         #endregion
         #region TextBoxes
@@ -264,6 +338,18 @@ namespace EncryptOrCry
             {
                 tb.Clear();
             }
+            date_label.Text = "";
+        }
+        //fills textboxes
+        private void FillTextboxes(Entry e)
+        {
+            TextBox[] mt = { title_textbox, email_textbox, user_textbox, password_textbox, note_textbox };
+            mt[0].Text = e.Title;
+            mt[1].Text = e.Email;
+            mt[2].Text = e.UserName;
+            mt[3].Text = e.Password;
+            mt[4].Text = e.Comment;
+            date_label.Text = e.Date;
         }
 
         //return all the content of the textboxes in an array, if empty return whitespace.
@@ -353,6 +439,8 @@ namespace EncryptOrCry
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-qwertyuiopasdfghjkl;'zxcvbnm,./";
             return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+
 
 
 
