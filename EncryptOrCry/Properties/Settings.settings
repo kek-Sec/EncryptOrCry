@@ -5,5 +5,8 @@
     <Setting Name="filepath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\\Users\\georg\\Desktop\\test.json</Value>
     </Setting>
+    <Setting Name="public_key" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

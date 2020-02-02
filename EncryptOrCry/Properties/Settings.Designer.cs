@@ -34,5 +34,17 @@ namespace EncryptOrCry.Properties {
                 this["filepath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string public_key {
+            get {
+                return ((string)(this["public_key"]));
+            }
+            set {
+                this["public_key"] = value;
+            }
+        }
     }
 }

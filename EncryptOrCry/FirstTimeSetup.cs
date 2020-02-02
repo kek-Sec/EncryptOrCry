@@ -41,43 +41,71 @@ namespace EncryptOrCry
         //Generate pgp keyrign button
         private void Button5_Click(object sender, EventArgs e)
         {
+            bool ret = false; string ret_str; //to return the GenerateKeyChain function
             string password = " ";
             if (InputBox.InputB("PGP generator", "Insert password for the pgp keyring.", ref password) == DialogResult.OK)
             {
                 string email = "";
                 if (InputBox.InputB("PGP generator", "Insert email for the pgp keyring.", ref email) == DialogResult.OK)
                 {
-
-                }
-            }
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\EncryptOrCry";
-            //Create folder if it doesn't exist. @documents
-            if(Directory.Exists(path))
-            {
-                Status("\n FilePath for keys exists!");
-                String[] files = Directory.GetFiles(path);
-                if(files.Length>0)
-                {
-                    if(MessageBox.Show("PGP generator","There are files in the default directory.\nClicking yes will replace any keychain with the default file names.",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\EncryptOrCry";
+                    //Create folder if it doesn't exist. @documents
+                    if (Directory.Exists(path))
                     {
-                        //generate keychain
+                        Status("\n FilePath for keys exists!");
+                        String[] files = Directory.GetFiles(path);
+                        if (files.Length > 0)
+                        {
+                            if (MessageBox.Show("There are files in the default directory.\nClicking yes will replace any keychain with the default file names.", "PGP generator", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                ret = GenerateKeyChain(path, email, password);
+                                ret_str = (ret) ? "Success" : "Failed!";
+                                Status("\nAttempt to Generate key chain ->" + ret_str);
+                            }
+                            else
+                            {
+                                Status("\nPGP Generation was canceled.");
+                            }
+                        }
+                        else
+                        {
+                            ret = GenerateKeyChain(path, email, password);
+                            ret_str = (ret) ? "Success" : "Failed!";
+                            Status("\nAttempt to Generate key chain ->" + ret_str);
+                        }
                     }
                     else
                     {
-                        Status("\nPGP Generation was canceled.");
+                        Directory.CreateDirectory(path);
+                        Status("\n FilePath for keys generated!");
+                        ret = GenerateKeyChain(path, email, password);
+                        ret_str = (ret) ? "Success" : "Failed!";
+                        Status("\nAttempt to Generate key chain ->" + ret_str);
                     }
                 }
-                //generate keychain
-            }
-            else
-            {
-                Directory.CreateDirectory(path);
-                Status("\n FilePath for keys generated!");
-                //generate keychain
             }
         }
 
         #region modules
+        private bool GenerateKeyChain(string path,string email,string password)
+        {
+            using (PGP pgp = new PGP())
+            {
+                try
+                {
+                    pgp.GenerateKey(path + @"\public.asc", path + @"\private.asc", email, password);
+                    CheckList[1] = 1;
+                    Properties.Settings.Default.public_key = path + @"\public.asc";
+                    Properties.Settings.Default.Save();
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    CheckList[1] = 0;
+                    return false;
+                }
+            }
+        }
         private void Status(string text)
         {
             status = status + text;
@@ -95,7 +123,6 @@ namespace EncryptOrCry
                 Properties.Settings.Default.filepath = File.ToString();
                 Status("\nAdded filepath ->" + File.ToString());
                 CheckList[0] = 1;
-                CheckList[1] = 1;
                 //OR
 
                 System.IO.StreamReader reader = new System.IO.StreamReader(fileToOpen);
@@ -125,6 +152,13 @@ namespace EncryptOrCry
                 button1.Enabled = true;
             }
             
+        }
+
+        Login l = new Login();
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            l.Show();
+            this.Close();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace EncryptOrCry
 
         private void Landing_Load(object sender, EventArgs e)
         {
-            fts.Show();
+            l.Show();
             this.Hide();
         }
     }
