@@ -16,7 +16,9 @@ namespace EncryptOrCry
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Landing());
+            var landing = new Landing();
+            landing.Show();
+            Application.Run();
         }
     }
 }

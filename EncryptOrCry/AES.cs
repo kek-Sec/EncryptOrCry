@@ -43,6 +43,7 @@ namespace EncryptOrCry
             catch
             {
                 MessageBox.Show("Encryption failed!", "Error");
+                Application.Exit();
             }
         }
         public static void DecryptFile(string inputFile, string outputFile,string password)

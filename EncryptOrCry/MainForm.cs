@@ -2,6 +2,7 @@
 using PgpCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -47,11 +48,18 @@ namespace EncryptOrCry
             try
             {
                 string tmp = Path.GetTempPath() + Guid.NewGuid().ToString() + ".tmp";
+                string tmp2 = Path.GetTempPath() + Guid.NewGuid().ToString() + ".tm";
                 File.Copy(p, tmp);
-                AES.DecryptFile(tmp, p, Properties.Settings.Default.aes_password_encrypted); ShouldEncrypt = true;
+                //comment out for testing
+                AES.DecryptFile(tmp, tmp2, Properties.Settings.Default.aes_password_encrypted); ShouldEncrypt = true;
+                File.Delete(p);
+                File.Copy(tmp2, p);
+                //up untill here
+                File.Delete(tmp);
+                File.Delete(tmp2);
             }
             catch (Exception e)
-            { MessageBox.Show("Wrong password."); this.Close(); ShouldEncrypt = false; }
+            { MessageBox.Show("Wrong password." + e.Message); this.Close(); ShouldEncrypt = false; }
 
         }
         private void Refresh()
@@ -248,6 +256,17 @@ namespace EncryptOrCry
         }
         #endregion
         #region buttons
+        private void Cancel_button_Click(object sender, EventArgs e)
+        {
+            mode = 3;
+            ModeHandler(mode);
+        }
+
+        //raw button
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(MakeJson());
+        }
 
         private void HideAllButtons()
         {
@@ -279,13 +298,11 @@ namespace EncryptOrCry
         }
         private void Prevpage_button_Click(object sender, EventArgs e)
         {
-            if (page > 0) { AddDataToItems(--page); prevpage_button.Cursor = Cursors.Default; } else { prevpage_button.Cursor = Cursors.No; }
-
+            prevpage();
         }
         private void Nextpage_button_Click(object sender, EventArgs e)
         {
-            AddDataToItems(++page);
-            prevpage_button.Cursor = Cursors.Default;
+            nextpage();
         }
         private void Button5_Click(object sender, EventArgs e)//Generate password button
         {
@@ -371,7 +388,13 @@ namespace EncryptOrCry
         }
         private void Delete_button_Click(object sender, EventArgs e)
         {
-            if (Selected) { Delete(current_entry); }
+            if (Selected)
+            {
+                if (MessageBox.Show("Delete entry?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+                {
+                    Delete(current_entry);
+                }
+            }
         }
         #endregion
         #region TextBoxes
@@ -492,6 +515,62 @@ namespace EncryptOrCry
         #endregion
         #region utils
 
+        private void CreateBackup()
+        {
+            String[] message = new string[3];
+            message[0] = "EncryptOrCry - Backup";
+            string fp = Properties.Settings.Default.filepath;
+            if(File.Exists(fp+".backup")) { File.Delete(fp + ".backup"); }
+            File.Copy(fp, fp + ".backup");
+            string tmp = Path.GetTempPath() + Guid.NewGuid().ToString() + ".tmp";
+            File.Copy(fp, tmp);
+            message[1] = GeneratePassword(8);
+            AES.EncryptFile(tmp, fp + ".backup",message[1]);
+            if (File.Exists(fp + ".txt")) { File.Delete(fp + ".txt"); }
+            File.WriteAllText(fp+".txt",PGPEncryptMessage(message));
+            File.Delete(tmp);
+
+        }
+
+        private void EncryptAndExit()
+        {
+            if (ShouldEncrypt)
+            {
+                ShouldEncrypt = false;
+                string[] message = new string[4];
+                string file_path = Properties.Settings.Default.filepath;
+                string aes_password = GeneratePassword(8);
+                GCHandle gch = GCHandle.Alloc(aes_password, GCHandleType.Pinned);
+                string file_path_content = File.ReadAllText(file_path);
+                string tmp_file = QuickTempFile(file_path_content, file_path);
+                AES.EncryptFile(tmp_file, file_path, aes_password);
+                File.WriteAllText(tmp_file, "1010101010");
+                File.Delete(tmp_file);
+                message[0] = "EncryptOrDie";
+                message[1] = "#----OneTimePassword----#";
+                message[2] = "Your password is --> " + aes_password;
+                message[3] = "-------------------------";
+                Properties.Settings.Default.aes_password_encrypted = PGPEncryptMessage(message);
+                Properties.Settings.Default.Save();
+                ZeroMemory(gch.AddrOfPinnedObject(), aes_password.Length * 2);
+                gch.Free();
+                Application.Exit();
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+
+        private void prevpage()
+        {
+            if (page > 0) { AddDataToItems(--page); prevpage_button.Cursor = Cursors.Default; } else { prevpage_button.Cursor = Cursors.No; }
+        }
+        private void nextpage()
+        {
+            AddDataToItems(++page);
+            prevpage_button.Cursor = Cursors.Default;
+        }
         private void FillListBox()
         {
             listBox1.Items.Clear();
@@ -551,32 +630,10 @@ namespace EncryptOrCry
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (ShouldEncrypt)
-            {
-                ShouldEncrypt = false;
-                string[] message = new string[3];
-                string file_path = Properties.Settings.Default.filepath;
-                string aes_password = GeneratePassword(8);
-                GCHandle gch = GCHandle.Alloc(aes_password, GCHandleType.Pinned);
-                string file_path_content = File.ReadAllText(file_path);
-                string tmp_file = QuickTempFile(file_path_content, file_path);
-                AES.EncryptFile(tmp_file, file_path, aes_password);
-                File.WriteAllText(tmp_file, "1010101010");
-                File.Delete(tmp_file);
-                message[0] = "EncryptOrDie";
-                message[1] = "#----OneTimePassword----#";
-                message[2] = "Your password is --> " + aes_password;
-                Properties.Settings.Default.aes_password_encrypted = PGPEncryptMessage(message);
-                Properties.Settings.Default.Save();
-                ZeroMemory(gch.AddrOfPinnedObject(), aes_password.Length * 2);
-                gch.Free();
-                Application.Exit();
-            }
-            else
-            {
-                this.Hide();
-            }
+            CreateBackup();
+            EncryptAndExit();
         }
+
 
     }
 }

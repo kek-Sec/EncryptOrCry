@@ -23,7 +23,14 @@ namespace EncryptOrCry
         private void Landing_Load(object sender, EventArgs e)
         {
             l.Show();
-            this.Hide();
+            this.Close();
+
+        }
+
+        private void Landing_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+                Application.Exit();
         }
     }
 }

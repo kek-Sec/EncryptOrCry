@@ -41,6 +41,7 @@ namespace EncryptOrCry
 
         private void Login_Load(object sender, EventArgs e)
         {
+            label3.Visible = false;
             CheckIfPublicKeyExists();
             DecryptChallenge();
 
@@ -56,6 +57,24 @@ namespace EncryptOrCry
             Properties.Settings.Default.aes_password_encrypted = textBox1.Text;
             ShowMain();
             this.Dispose();
+        }
+
+        private void TextBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            Clipboard.SetText(textBox2.Text);
+            label3.Visible = true;
+
+        }
+
+        private void TextBox2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Clipboard.SetText(textBox2.Text);
+            label3.Visible = true;
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

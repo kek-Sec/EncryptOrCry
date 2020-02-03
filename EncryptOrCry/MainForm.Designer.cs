@@ -221,6 +221,7 @@
             this.item5_textbox2.Name = "item5_textbox2";
             this.item5_textbox2.Size = new System.Drawing.Size(100, 20);
             this.item5_textbox2.TabIndex = 27;
+            this.item5_textbox2.UseSystemPasswordChar = true;
             // 
             // item5_textbox1
             // 
@@ -297,6 +298,7 @@
             this.item4_textbox2.Name = "item4_textbox2";
             this.item4_textbox2.Size = new System.Drawing.Size(100, 20);
             this.item4_textbox2.TabIndex = 22;
+            this.item4_textbox2.UseSystemPasswordChar = true;
             // 
             // groupBox6
             // 
@@ -349,6 +351,7 @@
             this.item3_textbox2.Name = "item3_textbox2";
             this.item3_textbox2.Size = new System.Drawing.Size(100, 20);
             this.item3_textbox2.TabIndex = 17;
+            this.item3_textbox2.UseSystemPasswordChar = true;
             // 
             // item3_textbox1
             // 
@@ -398,6 +401,7 @@
             this.item2_textbox2.Name = "item2_textbox2";
             this.item2_textbox2.Size = new System.Drawing.Size(100, 20);
             this.item2_textbox2.TabIndex = 12;
+            this.item2_textbox2.UseSystemPasswordChar = true;
             // 
             // item2_textbox1
             // 
@@ -445,6 +449,7 @@
             this.item1_textbox2.Name = "item1_textbox2";
             this.item1_textbox2.Size = new System.Drawing.Size(100, 20);
             this.item1_textbox2.TabIndex = 7;
+            this.item1_textbox2.UseSystemPasswordChar = true;
             // 
             // label4
             // 
@@ -519,6 +524,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "RAW";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button3
             // 
@@ -792,6 +798,7 @@
             this.cancel_button.TabIndex = 1;
             this.cancel_button.Text = "Cancel";
             this.cancel_button.UseVisualStyleBackColor = false;
+            this.cancel_button.Click += new System.EventHandler(this.Cancel_button_Click);
             // 
             // Save_button
             // 
