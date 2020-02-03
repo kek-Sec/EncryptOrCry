@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
-using PgpCore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -39,7 +37,7 @@ namespace EncryptOrCry
             mode = 3;
             ModeHandler(mode); //set view mode.
             LoadEntries();
-            Refresh();
+            Refresh_items();
         }
 
         private void init_decrypt()
@@ -62,7 +60,9 @@ namespace EncryptOrCry
             { MessageBox.Show("Wrong password." + e.Message); this.Close(); ShouldEncrypt = false; }
 
         }
-        private void Refresh()
+
+
+        public void Refresh_items()
         {
             AddDataToItems(0); //fill browser
             FillListBox();
@@ -146,7 +146,7 @@ namespace EncryptOrCry
             frw.WriteFile(filepath, MakeJson());
             page = 0; AddDataToItems(page);
             ClearTextBoxes();
-            Refresh();
+            Refresh_items();
             mode = 3;
             ModeHandler(mode);
             SystemSounds.Beep.Play();
@@ -236,6 +236,7 @@ namespace EncryptOrCry
             return core_json;
         }
         #endregion
+
         #region Modes
         //3 modes
         //Edit , Add , Read.
@@ -255,6 +256,7 @@ namespace EncryptOrCry
 
         }
         #endregion
+
         #region buttons
         private void Cancel_button_Click(object sender, EventArgs e)
         {
@@ -397,6 +399,7 @@ namespace EncryptOrCry
             }
         }
         #endregion
+
         #region TextBoxes
         //Edit , add ,Read
         private void HandleTextBoxes(int mode)
@@ -527,7 +530,7 @@ namespace EncryptOrCry
             message[1] = GeneratePassword(8);
             AES.EncryptFile(tmp, fp + ".backup",message[1]);
             if (File.Exists(fp + ".txt")) { File.Delete(fp + ".txt"); }
-            File.WriteAllText(fp+".txt",PGPEncryptMessage(message));
+            File.WriteAllText(fp+".txt",PGP_Service.PGPEncryptMessage(message));
             File.Delete(tmp);
 
         }
@@ -539,10 +542,16 @@ namespace EncryptOrCry
                 ShouldEncrypt = false;
                 string[] message = new string[4];
                 string file_path = Properties.Settings.Default.filepath;
+                string login_temp = Properties.Settings.Default.login_test_file;
                 string aes_password = GeneratePassword(8);
                 GCHandle gch = GCHandle.Alloc(aes_password, GCHandleType.Pinned);
                 string file_path_content = File.ReadAllText(file_path);
-                string tmp_file = QuickTempFile(file_path_content, file_path);
+                string tmp_file = QuickTempFile(file_path_content);
+                string tmp_login_file = QuickTempFile(GeneratePassword(256));
+                if(File.Exists(login_temp)) { File.Delete(login_temp); }
+                AES.EncryptFile(tmp_login_file, file_path + ".login", aes_password);
+                Properties.Settings.Default.login_test_file = file_path + ".login";
+                Properties.Settings.Default.Save();
                 AES.EncryptFile(tmp_file, file_path, aes_password);
                 File.WriteAllText(tmp_file, "1010101010");
                 File.Delete(tmp_file);
@@ -550,7 +559,7 @@ namespace EncryptOrCry
                 message[1] = "#----OneTimePassword----#";
                 message[2] = "Your password is --> " + aes_password;
                 message[3] = "-------------------------";
-                Properties.Settings.Default.aes_password_encrypted = PGPEncryptMessage(message);
+                Properties.Settings.Default.aes_password_encrypted = PGP_Service.PGPEncryptMessage(message);
                 Properties.Settings.Default.Save();
                 ZeroMemory(gch.AddrOfPinnedObject(), aes_password.Length * 2);
                 gch.Free();
@@ -597,29 +606,10 @@ namespace EncryptOrCry
         }
 
 
-        private string PGPEncryptMessage(string[] input)
-        {
-            string FileName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".in";
-            string OutPutName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".out";
-            File.WriteAllLines(FileName, input);
-            using (PGP pgp = new PGP())
-            {
-
-                using (FileStream inputFileStream = new FileStream(FileName, FileMode.Open))
-                using (Stream outputFileStream = File.Create(OutPutName))
-                using (Stream publicKeyStream = new FileStream(Properties.Settings.Default.public_key, FileMode.Open))
-                    pgp.EncryptStream(inputFileStream, outputFileStream, publicKeyStream, true, true);
-            }
-            String output = File.ReadAllText(OutPutName);
-            File.WriteAllText(FileName, "010101010");
-            File.WriteAllText(OutPutName, "0110101010");
-            File.Delete(FileName);
-            File.Delete(OutPutName);
-            return output;
-        }
+       
 
         //returns temp file path
-        private string QuickTempFile(string input, string path)
+        private string QuickTempFile(string input)
         {
             string FileName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".tmp";
             File.WriteAllText(FileName, input);
@@ -630,7 +620,7 @@ namespace EncryptOrCry
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            CreateBackup();
+            if(Properties.Settings.Default.use_auto_backup) { CreateBackup(); }
             EncryptAndExit();
         }
 

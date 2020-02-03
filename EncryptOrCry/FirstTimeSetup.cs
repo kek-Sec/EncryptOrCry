@@ -134,6 +134,7 @@ namespace EncryptOrCry
 
         private void FirstTimeSetup_Load(object sender, EventArgs e)
         {
+            if(Properties.Settings.Default.use_auto_backup) { checkBox1.Checked = true; } else { checkBox1.Checked = false; }
             timer1.Start();
             button1.Enabled = false;
             button1.BackColor = Color.DarkGray;
@@ -155,6 +156,14 @@ namespace EncryptOrCry
         {
             l.Show();
             this.Close();
+        }
+
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            Properties.Settings.Default.use_auto_backup = checkBox1.Checked;
+            Properties.Settings.Default.Save();
+            Status("\n Use AutoBackup -> " + Properties.Settings.Default.use_auto_backup);
         }
     }
 }

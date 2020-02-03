@@ -58,5 +58,29 @@ namespace EncryptOrCry.Properties {
                 this["aes_password_encrypted"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string login_test_file {
+            get {
+                return ((string)(this["login_test_file"]));
+            }
+            set {
+                this["login_test_file"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool use_auto_backup {
+            get {
+                return ((bool)(this["use_auto_backup"]));
+            }
+            set {
+                this["use_auto_backup"] = value;
+            }
+        }
     }
 }

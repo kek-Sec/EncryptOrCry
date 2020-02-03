@@ -232,13 +232,16 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Font = new System.Drawing.Font("Lucida Console", 11F);
-            this.checkBox1.Location = new System.Drawing.Point(41, 257);
+            this.checkBox1.Location = new System.Drawing.Point(9, 255);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(89, 19);
+            this.checkBox1.Size = new System.Drawing.Size(161, 19);
             this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Use Log";
+            this.checkBox1.Text = "Use Auto-Backup";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // button3
             // 
