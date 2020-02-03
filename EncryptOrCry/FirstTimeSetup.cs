@@ -93,7 +93,7 @@ namespace EncryptOrCry
             {
                 try
                 {
-                    pgp.GenerateKey(path + @"\public.asc", path + @"\private.asc", email, password);
+                    pgp.GenerateKey(path + @"\public.asc", path + @"\private.asc", email, password,4096);
                     CheckList[1] = 1;
                     Properties.Settings.Default.public_key = path + @"\public.asc";
                     Properties.Settings.Default.Save();
@@ -117,16 +117,12 @@ namespace EncryptOrCry
             var FD = new System.Windows.Forms.OpenFileDialog();
             if (FD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string fileToOpen = FD.FileName;
 
                 System.IO.FileInfo File = new System.IO.FileInfo(FD.FileName);
                 Properties.Settings.Default.filepath = File.ToString();
+                Properties.Settings.Default.Save();
                 Status("\nAdded filepath ->" + File.ToString());
                 CheckList[0] = 1;
-                //OR
-
-                System.IO.StreamReader reader = new System.IO.StreamReader(fileToOpen);
-                //etc
             }
         }
         #endregion

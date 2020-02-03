@@ -46,5 +46,17 @@ namespace EncryptOrCry.Properties {
                 this["public_key"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string aes_password_encrypted {
+            get {
+                return ((string)(this["aes_password_encrypted"]));
+            }
+            set {
+                this["aes_password_encrypted"] = value;
+            }
+        }
     }
 }

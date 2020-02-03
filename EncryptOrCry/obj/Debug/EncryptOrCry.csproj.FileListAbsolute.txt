@@ -20,3 +20,4 @@ C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Diagnosti
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Reflection.TypeExtensions.dll
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\BouncyCastle.Crypto.xml
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Drawing.Common.dll

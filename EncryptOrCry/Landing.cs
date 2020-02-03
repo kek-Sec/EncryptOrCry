@@ -17,7 +17,6 @@ namespace EncryptOrCry
             InitializeComponent();
         }
 
-        MainForm mf = new MainForm();
         Login l = new Login();
         FirstTimeSetup fts = new FirstTimeSetup();
 

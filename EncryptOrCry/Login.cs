@@ -18,32 +18,44 @@ namespace EncryptOrCry
         {
             InitializeComponent();
         }
-
         private void DecryptChallenge()
         {
-            //Generate test file.
-            string FileName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".in";
-            string OutPutName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".out";
-            String[] text = { "Welcome,", "If this works I will be so happy." };
-            File.WriteAllLines(FileName, text);
-            using (PGP pgp = new PGP())
+            textBox2.Text = Properties.Settings.Default.aes_password_encrypted;
+        }
+
+        private void CheckIfPublicKeyExists()
+        {
+            if(!File.Exists(Properties.Settings.Default.public_key))
             {
-                
-                using (FileStream inputFileStream = new FileStream(FileName, FileMode.Open))
-                using (Stream outputFileStream = File.Create(OutPutName))
-                using (Stream publicKeyStream = new FileStream(Properties.Settings.Default.public_key, FileMode.Open))
-                    pgp.EncryptStream(inputFileStream, outputFileStream, publicKeyStream, true, true);
+                MessageBox.Show("Public key can not be found! , please show me the way..\n", "Error!");
+                var FD = new OpenFileDialog();
+                if (FD.ShowDialog() == DialogResult.OK)
+                {
+
+                    FileInfo File = new System.IO.FileInfo(FD.FileName);
+                    Properties.Settings.Default.public_key = File.ToString();
+                    Properties.Settings.Default.Save();
+                }
             }
-            MessageBox.Show(File.ReadAllText(OutPutName));
-            File.Encrypt(FileName);
-            File.Delete(FileName);
-            File.Encrypt(OutPutName);
-            File.Delete(OutPutName);
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
+            CheckIfPublicKeyExists();
             DecryptChallenge();
+
+        }
+
+        public void ShowMain()
+        {
+            MainForm mfm = new MainForm();
+            mfm.Show();
+        }
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.aes_password_encrypted = textBox1.Text;
+            ShowMain();
+            this.Dispose();
         }
     }
 }

@@ -11,14 +11,12 @@ namespace EncryptOrCry
 {
     class AES
     {
-        public string key { get; set; }
 
-        public void EncryptFile(string inputFile, string outputFile)
+        public static void EncryptFile(string inputFile, string outputFile,string password)
         {
 
             try
             {
-                string password = @"myKey123"; // Your Key Here
                 UnicodeEncoding UE = new UnicodeEncoding();
                 byte[] key = UE.GetBytes(password);
 
@@ -47,11 +45,10 @@ namespace EncryptOrCry
                 MessageBox.Show("Encryption failed!", "Error");
             }
         }
-        public void DecryptFile(string inputFile, string outputFile)
+        public static void DecryptFile(string inputFile, string outputFile,string password)
         {
 
             {
-                string password = @"myKey123"; // Your Key Here
 
                 UnicodeEncoding UE = new UnicodeEncoding();
                 byte[] key = UE.GetBytes(password);

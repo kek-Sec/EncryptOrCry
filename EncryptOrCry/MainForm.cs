@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
+using PgpCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace EncryptOrCry
@@ -14,8 +17,13 @@ namespace EncryptOrCry
         public MainForm()
         {
             InitializeComponent();
+
         }
 
+        //  Call this function to remove the key from memory after use for security
+        [DllImport("KERNEL32.DLL", EntryPoint = "RtlZeroMemory")]
+        public static extern bool ZeroMemory(IntPtr Destination, int Length);
+        public static bool ShouldEncrypt = false; //to avoid encrypting already encrypted file.
         public static bool Selected = false;
         public static int current_entry;
         public readonly string filepath = Properties.Settings.Default.filepath;
@@ -26,13 +34,26 @@ namespace EncryptOrCry
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            init_decrypt();
             mode = 3;
             ModeHandler(mode); //set view mode.
             LoadEntries();
             Refresh();
-
         }
 
+        private void init_decrypt()
+        {
+            string p = Properties.Settings.Default.filepath;
+            try
+            {
+                string tmp = Path.GetTempPath() + Guid.NewGuid().ToString() + ".tmp";
+                File.Copy(p, tmp);
+                AES.DecryptFile(tmp, p, Properties.Settings.Default.aes_password_encrypted); ShouldEncrypt = true;
+            }
+            catch (Exception e)
+            { MessageBox.Show("Wrong password."); this.Close(); ShouldEncrypt = false; }
+
+        }
         private void Refresh()
         {
             AddDataToItems(0); //fill browser
@@ -99,7 +120,7 @@ namespace EncryptOrCry
                 items[j].Text = content[j];
             }
             int c = 0;
-            foreach(Label l in titlez)
+            foreach (Label l in titlez)
             {
                 l.Text = Titles[c++];
             }
@@ -156,11 +177,18 @@ namespace EncryptOrCry
         //Takes CoreJson object and adds it to the Entries List.
         private void LoadEntries()
         {
-            CoreJson cj = LoadJson();
-            size = cj.Size;
-            foreach (Entry e in cj.Entries)
+            try
             {
-                Entries.Add(e);
+                CoreJson cj = LoadJson();
+                size = cj.Size;
+                foreach (Entry e in cj.Entries)
+                {
+                    Entries.Add(e);
+                }
+            }
+            catch (Exception e)
+            {
+
             }
         }
 
@@ -456,6 +484,10 @@ namespace EncryptOrCry
         }
 
 
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectEntry(listBox1.SelectedIndex);
+        }
 
         #endregion
         #region utils
@@ -463,7 +495,7 @@ namespace EncryptOrCry
         private void FillListBox()
         {
             listBox1.Items.Clear();
-            foreach(Entry e in Entries)
+            foreach (Entry e in Entries)
             {
                 listBox1.Items.Add(e.Title);
             }
@@ -472,7 +504,7 @@ namespace EncryptOrCry
         private void FillListBox(int[] queue)
         {
             listBox1.Items.Clear();
-            for (int i=0;i<queue.Length;i++)
+            for (int i = 0; i < queue.Length; i++)
             {
                 listBox1.Items.Add(Entries[queue[i]]);
             }
@@ -486,10 +518,65 @@ namespace EncryptOrCry
         }
 
 
+        private string PGPEncryptMessage(string[] input)
+        {
+            string FileName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".in";
+            string OutPutName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".out";
+            File.WriteAllLines(FileName, input);
+            using (PGP pgp = new PGP())
+            {
 
+                using (FileStream inputFileStream = new FileStream(FileName, FileMode.Open))
+                using (Stream outputFileStream = File.Create(OutPutName))
+                using (Stream publicKeyStream = new FileStream(Properties.Settings.Default.public_key, FileMode.Open))
+                    pgp.EncryptStream(inputFileStream, outputFileStream, publicKeyStream, true, true);
+            }
+            String output = File.ReadAllText(OutPutName);
+            File.WriteAllText(FileName, "010101010");
+            File.WriteAllText(OutPutName, "0110101010");
+            File.Delete(FileName);
+            File.Delete(OutPutName);
+            return output;
+        }
 
+        //returns temp file path
+        private string QuickTempFile(string input, string path)
+        {
+            string FileName = Path.GetTempPath() + Guid.NewGuid().ToString() + ".tmp";
+            File.WriteAllText(FileName, input);
+            return FileName;
 
-
+        }
         #endregion
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (ShouldEncrypt)
+            {
+                ShouldEncrypt = false;
+                string[] message = new string[3];
+                string file_path = Properties.Settings.Default.filepath;
+                string aes_password = GeneratePassword(8);
+                GCHandle gch = GCHandle.Alloc(aes_password, GCHandleType.Pinned);
+                string file_path_content = File.ReadAllText(file_path);
+                string tmp_file = QuickTempFile(file_path_content, file_path);
+                AES.EncryptFile(tmp_file, file_path, aes_password);
+                File.WriteAllText(tmp_file, "1010101010");
+                File.Delete(tmp_file);
+                message[0] = "EncryptOrDie";
+                message[1] = "#----OneTimePassword----#";
+                message[2] = "Your password is --> " + aes_password;
+                Properties.Settings.Default.aes_password_encrypted = PGPEncryptMessage(message);
+                Properties.Settings.Default.Save();
+                ZeroMemory(gch.AddrOfPinnedObject(), aes_password.Length * 2);
+                gch.Free();
+                Application.Exit();
+            }
+            else
+            {
+                this.Hide();
+            }
+        }
+
     }
 }
