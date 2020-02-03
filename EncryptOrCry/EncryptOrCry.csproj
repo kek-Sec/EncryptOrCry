@@ -241,6 +241,7 @@
     <Compile Include="PGP_Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search.cs" />
     <EmbeddedResource Include="FirstTimeSetup.resx">
       <DependentUpon>FirstTimeSetup.cs</DependentUpon>
     </EmbeddedResource>

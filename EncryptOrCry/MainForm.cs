@@ -477,22 +477,22 @@ namespace EncryptOrCry
         }
         private void Email_textbox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            CopyTextBox(email_textbox, 0);
+            CopyTextBox(email_textbox);
         }
 
         private void User_textbox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            CopyTextBox(user_textbox, 1);
+            CopyTextBox(user_textbox);
         }
 
         private void Password_textbox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             password_textbox.UseSystemPasswordChar = false;
-            CopyTextBox(password_textbox, 2);
+            CopyTextBox(password_textbox);
             password_textbox.UseSystemPasswordChar = true;
         }
         #endregion
-        private void CopyTextBox(TextBox tb, int timer_id)
+        private void CopyTextBox(TextBox tb)
         //Add text to clipboard
         //Set textbox color for 4 seconds.
         {
@@ -594,7 +594,7 @@ namespace EncryptOrCry
             listBox1.Items.Clear();
             for (int i = 0; i < queue.Length; i++)
             {
-                listBox1.Items.Add(Entries[queue[i]]);
+                listBox1.Items.Add(Entries[queue[i]].Title);
             }
         }
 
@@ -625,5 +625,17 @@ namespace EncryptOrCry
         }
 
 
+        Search s = new Search();
+        //search textbox
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            String[] Titles = new string[size];
+            int i = 0;
+            foreach(Entry en in Entries)
+            {
+                Titles[i++] = en.Title;
+            }
+            FillListBox(s.doSearch(Titles, textBox1.Text));
+        }
     }
 }
