@@ -131,6 +131,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "IMPORT PGP KEYRING";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // button5
             // 

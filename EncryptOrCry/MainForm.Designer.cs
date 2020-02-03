@@ -543,9 +543,8 @@
             // listBox1
             // 
             this.listBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.listBox1.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(3, 10);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(205, 264);

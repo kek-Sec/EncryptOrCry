@@ -21,3 +21,8 @@ C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Reflectio
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\BouncyCastle.Crypto.xml
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\System.Drawing.Common.dll
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\EncryptOrCry.exe.manifest
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\bin\Debug\EncryptOrCry.application
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\obj\Debug\EncryptOrCry.TrustInfo.xml
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\obj\Debug\EncryptOrCry.exe.manifest
+C:\Users\georg\source\repos\EncryptOrCry\EncryptOrCry\obj\Debug\EncryptOrCry.application

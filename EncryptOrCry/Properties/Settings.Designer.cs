@@ -82,5 +82,17 @@ namespace EncryptOrCry.Properties {
                 this["use_auto_backup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool First_time {
+            get {
+                return ((bool)(this["First_time"]));
+            }
+            set {
+                this["First_time"] = value;
+            }
+        }
     }
 }

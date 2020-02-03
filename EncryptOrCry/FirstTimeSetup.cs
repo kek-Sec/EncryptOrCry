@@ -147,6 +147,8 @@ namespace EncryptOrCry
                 timer1.Stop();
                 button1.BackColor = Color.Lime;
                 button1.Enabled = true;
+                Properties.Settings.Default.First_time = false;
+                Properties.Settings.Default.Save();
             }
             
         }
@@ -164,6 +166,21 @@ namespace EncryptOrCry
             Properties.Settings.Default.use_auto_backup = checkBox1.Checked;
             Properties.Settings.Default.Save();
             Status("\n Use AutoBackup -> " + Properties.Settings.Default.use_auto_backup);
+        }
+
+        //import pgp key ring
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            var FD = new System.Windows.Forms.OpenFileDialog();
+            if (FD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                System.IO.FileInfo File = new System.IO.FileInfo(FD.FileName);
+                Properties.Settings.Default.public_key = File.ToString();
+                Properties.Settings.Default.Save();
+                Status("\nAdded pub key ->" + File.ToString());
+                CheckList[1] = 1;
+            }
         }
     }
 }

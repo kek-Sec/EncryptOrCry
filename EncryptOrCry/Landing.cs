@@ -22,7 +22,14 @@ namespace EncryptOrCry
 
         private void Landing_Load(object sender, EventArgs e)
         {
-            l.Show();
+            if(Properties.Settings.Default.First_time)
+            {
+                fts.Show(); //Show first Time setup.   
+            }
+            else
+            {
+                l.Show(); //Show login page.
+            }
             this.Close();
 
         }

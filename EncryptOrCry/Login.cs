@@ -79,5 +79,16 @@ namespace EncryptOrCry
         {
             Application.Exit();
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Do you want to go back to FirstTimeSetup?", "Info", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+                Properties.Settings.Default.First_time = true;
+                Properties.Settings.Default.Save();
+                this.Close();
+            }
+        }
     }
 }
