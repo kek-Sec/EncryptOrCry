@@ -386,6 +386,8 @@ namespace EncryptOrCry
         #endregion
 
         #region TextBoxes
+        bool SearchMode = false;
+        int[] SearchOrder;
         Search s = new Search();
         //search textbox
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -396,7 +398,9 @@ namespace EncryptOrCry
             {
                 Titles[i++] = en.Title;
             }
-            FillListBox(s.doSearch(Titles, textBox1.Text));
+            SearchMode = true;
+            SearchOrder = s.doSearch(Titles, textBox1.Text);
+            FillListBox(SearchOrder);
         }
 
         //Edit , add ,Read
@@ -510,7 +514,9 @@ namespace EncryptOrCry
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectEntry(listBox1.SelectedIndex);
+            if(SearchMode) { SelectEntry(SearchOrder[listBox1.SelectedIndex]); }
+            else { SelectEntry(listBox1.SelectedIndex);}
+            
         }
 
         #endregion
