@@ -1,0 +1,10 @@
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\bin\Debug\EncryptOrDie.exe.config
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\bin\Debug\EncryptOrDie.exe
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\bin\Debug\EncryptOrDie.pdb
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\obj\Debug\EncryptOrDie.csprojAssemblyReference.cache
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\obj\Debug\EncryptOrDie.Form1.resources
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\obj\Debug\EncryptOrDie.Properties.Resources.resources
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\obj\Debug\EncryptOrDie.csproj.GenerateResource.cache
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\obj\Debug\EncryptOrDie.csproj.CoreCompileInputs.cache
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\obj\Debug\EncryptOrDie.exe
+C:\Users\georg\source\repos\EncryptOrDie\EncryptOrDie\obj\Debug\EncryptOrDie.pdb
