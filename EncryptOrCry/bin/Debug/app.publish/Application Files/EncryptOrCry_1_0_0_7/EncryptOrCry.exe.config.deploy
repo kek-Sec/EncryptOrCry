@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="EncryptOrCry.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+    </startup>
+    <userSettings>
+        <EncryptOrCry.Properties.Settings>
+            <setting name="filepath" serializeAs="String">
+                <value>C:\\Users\\georg\\Desktop\\test.json</value>
+            </setting>
+            <setting name="public_key" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="aes_password_encrypted" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="login_test_file" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="use_auto_backup" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="First_time" serializeAs="String">
+                <value>True</value>
+            </setting>
+        </EncryptOrCry.Properties.Settings>
+    </userSettings>
+</configuration>

@@ -33,7 +33,7 @@ namespace EncryptOrCry
 
         }
 
-        private void Label2_Click(object sender, EventArgs e)
+        private void abel2_Click(object sender, EventArgs e)
         {
 
         }
@@ -147,16 +147,14 @@ namespace EncryptOrCry
                 timer1.Stop();
                 button1.BackColor = Color.Lime;
                 button1.Enabled = true;
-                Properties.Settings.Default.First_time = false;
-                Properties.Settings.Default.Save();
             }
             
         }
 
-        Login l = new Login();
+        MainForm mf = new MainForm();
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            l.Show();
+            mf.Show();
             this.Close();
         }
 

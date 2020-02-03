@@ -33,7 +33,14 @@ namespace EncryptOrCry
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            init_decrypt();
+            if (Properties.Settings.Default.First_time)
+            { ShouldEncrypt = true; }
+            else
+            {
+                init_decrypt();
+            }
+            Properties.Settings.Default.First_time = false;
+            Properties.Settings.Default.Save();
             mode = 3;
             ModeHandler(mode); //set view mode.
             LoadEntries();
