@@ -14,7 +14,7 @@ The password manager to rule them all
 <h1>How do you secure my passwords?</h1>
 <p>The entries are first placed in a json file.</p>
 <p>The json file then gets encrypted with AES using a random password.</p>
-<p>This random password gets encrypted usind your pgp key and is saved in an encrypted form.</p>
+<p>This random password gets encrypted using your pgp key and is saved in an encrypted form.</p>
 <p>Every time you close the program a new password is generated.</p>
 
 <h1>Pictures</h1>
